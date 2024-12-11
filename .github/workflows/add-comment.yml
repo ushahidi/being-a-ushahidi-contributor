@@ -17,9 +17,12 @@ jobs:
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
           BODY: >
-            Thanks for submitting your article! We will review it within 7 days.
-            Please ensure the following:
-            - [ ] Your submission aligns with our goals and mission.
-            - [ ] It does not market you or your company.
-            We will get back to you after our review!
+              **Thank you for submitting your article!** 🎉
+
+                We appreciate your effort and will review it within **7 days**. Meanwhile, please ensure the following:
+
+                - [ ] Your submission aligns with our **goals and mission**.
+                - [ ] It does not market **you** or your **company**.
+
+                Our team will get back to you once the review is complete. Feel free to reach out if you have any questions or updates. 🚀
 
