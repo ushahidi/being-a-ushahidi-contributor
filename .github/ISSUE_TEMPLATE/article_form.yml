@@ -1,0 +1,78 @@
+name: "Submit Article"
+description: Use this template to submit an article for publication.
+title: "New Article Submission: <Title>"
+labels: ["article", "submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting your article. Please fill out the required details below.
+
+  - type: input
+    id: heading
+    attributes:
+      label: Heading
+      description: Provide the main heading of the article.
+      placeholder: "Enter the heading of your article"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Provide a brief summary of the article.
+      placeholder: "Enter a short summary"
+    validations:
+      required: true
+
+  - type: input
+    id: head_picture
+    attributes:
+      label: Head Picture URL
+      description: Provide the URL of the head picture for the article.
+      placeholder: "Enter the URL of the head picture"
+    validations:
+      required: true
+
+  - type: textarea
+    id: body
+    attributes:
+      label: Body
+      description: Write the main content of the article.
+      placeholder: "Enter the article content here"
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Author Name
+      description: Provide the name of the author.
+      placeholder: "Enter the author's name"
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      description: Enter the publication date in the format YYYY-MM-DD.
+      placeholder: "Enter the date (e.g., 2024-12-11)"
+    validations:
+      required: true
+      pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Select the category of the article.
+      options:
+        - Technology
+        - Business
+        - Health
+        - Education
+        - Lifestyle
+    validations:
+      required: true
