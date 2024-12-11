@@ -13,7 +13,7 @@ jobs:
       - name: Add comment
         run: gh issue comment "$NUMBER" --body "$BODY"
         env:
-          GH_TOKEN: ${{ secrets.THE_OCTO_SECRET }}
+          GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
           BODY: >
