@@ -1,6 +1,6 @@
 name: "Submit Article"
 description: Use this template to submit an article for publication.
-title: "New Article Submission: <Title>"
+title: "[ Article Submission ] <Title>"
 labels: ["article", "submission"]
 body:
   - type: markdown
