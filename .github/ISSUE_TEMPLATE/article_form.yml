@@ -1,6 +1,6 @@
 name: Submit Article
-description: Use this form to submit an article for review.
-title: "[Article Submission] Your Article Title"
+description: Use this form to submit an article for review or publication.
+title: "[Article Submission] <Title>"
 labels:
   - article
   - submission
@@ -8,8 +8,14 @@ body:
   - type: markdown
     attributes:
       value: |
+        ## Welcome to submit your article for  publication on Ushahidi's platform!
+        Please fill out the required details below. Ensure all required fields are completed.
+
+  - type: markdown
+    attributes:
+      value: |
         ## Basic Information
-        Please provide the following details about your article submission.
+        Provide general details about your article.
 
   - type: input
     id: title
@@ -17,11 +23,23 @@ body:
       label: Article Title
       description: Provide a title for your article.
       placeholder: "Enter your article title here"
+    validations:
+      required: true
+
+  - type: input
+    id: heading
+    attributes:
+      label: Heading
+      description: Provide the main heading of the article.
+      placeholder: "Enter the heading of your article"
+    validations:
+      required: true
 
   - type: markdown
     attributes:
       value: |
         ## Article Content and Review
+        Provide detailed information about your article.
 
   - type: textarea
     id: summary
@@ -29,25 +47,88 @@ body:
       label: Article Summary
       description: Summarize the article's key points.
       placeholder: "Enter a brief summary"
+    validations:
+      required: true
+
+  - type: input
+    id: head_picture
+    attributes:
+      label: Head Picture URL
+      description: Provide the URL of the head picture for the article.
+      placeholder: "Enter the URL of the head picture"
+    validations:
+      required: true
+
+  - type: textarea
+    id: body
+    attributes:
+      label: Body
+      description: Write the main content of the article.
+      placeholder: "Enter the article content here"
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Author Details
+        Provide information about the author and publication details.
+
+  - type: input
+    id: author
+    attributes:
+      label: Author Name
+      description: Provide the name of the author.
+      placeholder: "Enter the author's name"
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      description: Enter the publication date in the format YYYY-MM-DD.
+      placeholder: "Enter the date (e.g., 2024-12-11)"
+    validations:
+      required: true
+      pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Article Category
+        Help us categorize your article.
 
   - type: dropdown
     id: category
     attributes:
       label: Category
-      description: Select the category your article fits into.
+      description: Select the category of the article.
       options:
         - Technology
         - Business
         - Health
-        - Other
+        - Education
+        - Lifestyle
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Code of Conduct Agreement
+        The Code of Conduct helps create a safe space for everyone. We require all submissions to comply.
 
   - type: checkboxes
     attributes:
       label: Code of Conduct
-      description: The Code of Conduct helps create a safe space for everyone. We require
-        that everyone agrees to it.
+      description: Please agree to our [Code of Conduct](link/to/coc) to proceed.
       options:
         - label: I agree to follow this project's [Code of Conduct](link/to/coc)
           required: true
 
-  
+  - type: markdown
+    attributes:
+      value: |
+        ## Submission Completed
+        Thanks for completing our form! Our team will review your submission within 7 days.
