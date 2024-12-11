@@ -1,0 +1,25 @@
+name: Add comment
+on:
+  issues:
+    types:
+      - labeled
+jobs:
+  add-comment:
+    if: github.event.label.name == 'article'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Add comment
+        run: gh issue comment "$NUMBER" --body "$BODY"
+        env:
+          GH_TOKEN: ${{ secrets.THE_OCTO_SECRET }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          BODY: >
+            Thanks for submitting your article! We will review it within 7 days.
+            Please ensure the following:
+            - [ ] Your submission aligns with our goals and mission.
+            - [ ] It does not market you or your company.
+            We will get back to you after our review!
+            
