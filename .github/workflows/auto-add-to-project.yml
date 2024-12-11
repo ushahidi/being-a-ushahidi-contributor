@@ -1,0 +1,30 @@
+name: Add Issue to Project Ushahidi Articles
+
+on:
+  issues:
+    types:
+      - labeled
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    if: contains(github.event.label.name, 'article') && contains(github.event.label.name, 'submission')
+    steps:
+      - name: Check for required labels
+        if: ${{ github.event.label.name == 'article' || github.event.label.name == 'submission' }}
+        run: echo "The issue has the required labels."
+
+      - name: Add to project
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issueNumber = context.payload.issue.number;
+            const projectId = '26';
+            const columnId = '<COLUMN_ID>';
+
+            // Add issue to project column
+            await github.projects.createCard({
+              column_id: columnId,
+              content_id: issueNumber,
+              content_type: 'Issue',
+            });

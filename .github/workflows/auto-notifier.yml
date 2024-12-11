@@ -1,0 +1,31 @@
+name: Auto Reply to Article Submission
+
+on:
+  issues:
+    types:
+      - labeled
+
+jobs:
+  reply-to-article:
+    runs-on: ubuntu-latest
+    if: contains(github.event.label.name, 'article') && contains(github.event.label.name, 'submission')
+    steps:
+      - name: Check Labels
+        if: ${{ contains(github.event.issue.labels.*.name, 'article') && contains(github.event.issue.labels.*.name, 'submission') }}
+        run: echo "Labels match. Proceeding to comment."
+
+      - name: Post Comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hi @${{ github.event.issue.user.login }},
+
+            Thanks for submitting your article! We will review it within 7 days.
+
+            Please ensure the following:
+            - [ ] Your submission aligns with our goals and mission.
+            - [ ] It does not market you or your company.
+
+            We will get back to you after our review!
