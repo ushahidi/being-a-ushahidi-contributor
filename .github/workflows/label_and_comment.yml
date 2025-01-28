@@ -1,0 +1,36 @@
+name: 🗒️ Label & Comment
+on:
+  issues:
+    types:
+      - labeled
+      - unlabeled
+jobs:
+  add-comment:
+    if: github.event.label.name == 'new'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Add comment
+        run: gh issue comment "$NUMBER" --body "$BODY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          BODY: >
+            Hello ! Thanks for submitting a new issue/
+            
+  add-on-sprint:
+      if: github.event.label.name == 'sprint' && github.event.action == 'labeled'
+      runs-on: ubuntu-latest
+      permissions:
+        issues: write
+      steps:
+        - name: Add comment on unlabeled
+          run: gh issue comment "$NUMBER" --body "$BODY"
+          env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GH_REPO: ${{ github.repository }}
+            NUMBER: ${{ github.event.issue.number }}
+            BODY: >
+              This issue is added on sprint.
