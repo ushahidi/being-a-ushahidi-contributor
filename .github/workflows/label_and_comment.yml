@@ -6,7 +6,7 @@ on:
       - unlabeled
 jobs:
   add-comment:
-    if: github.event.label.name == 'new'
+    if: github.event.label.name == 'article' && github.event.label.name == 'submission'
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -14,23 +14,17 @@ jobs:
       - name: Add comment
         run: gh issue comment "$NUMBER" --body "$BODY"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.THE_OCTO_SECRET }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
           BODY: >
-            Hello ! Thanks for submitting a new issue/
+            **Thank you for submitting your article!** 🎉
+
+                We really appreciate your effort and will review it within **7 days**. Meanwhile, please ensure the following:
+
+                - [ ] Your submission aligns with our **goals and mission**.
+                - [ ] It does not directly market **you** or your **company**.
+
+                Our team will get back to you once the review is complete. Feel free to reach out if you have any questions or updates. 🚀
             
-  add-on-sprint:
-      if: github.event.label.name == 'sprint' && github.event.action == 'labeled'
-      runs-on: ubuntu-latest
-      permissions:
-        issues: write
-      steps:
-        - name: Add comment on unlabeled
-          run: gh issue comment "$NUMBER" --body "$BODY"
-          env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            GH_REPO: ${{ github.repository }}
-            NUMBER: ${{ github.event.issue.number }}
-            BODY: >
-              This issue is added on sprint.
+  
