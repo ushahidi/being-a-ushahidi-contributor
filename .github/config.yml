@@ -1,0 +1,7 @@
+workflow:
+  - .github/workflows/**
+
+documentation:
+  - "**/*.qhelp"
+  - "**/*.md"
+  - docs/**
