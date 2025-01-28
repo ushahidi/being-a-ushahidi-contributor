@@ -2,11 +2,10 @@ name: 🗒️ Label & Comment
 on:
   issues:
     types:
-      - labeled
-      - unlabeled
+      - opened
 jobs:
   add-comment:
-    if: github.event.label.name == 'article' && github.event.label.name == 'submission'
+    if: contains(github.event.issue.labels.*.name, 'article') && contains(github.event.issue.labels.*.name, 'submission')
     runs-on: ubuntu-latest
     permissions:
       issues: write
