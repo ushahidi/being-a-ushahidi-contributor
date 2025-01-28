@@ -1,0 +1,90 @@
+name: 🗒️ Assign & Add to Project
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  process-issue:
+    # Only run if issue has both 'article' and 'submission' labels
+    if: contains(github.event.issue.labels.*.name, 'article') && contains(github.event.issue.labels.*.name, 'submission')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      repository-projects: write
+
+    steps:
+      - name: Assign issue to creator
+        run: |
+          gh api \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -X POST \
+            repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/assignees \
+            -f assignees="${{ github.event.issue.user.login }}"
+
+      - name: Move issue to "Proposed" column
+        run: |
+          PROJECT_ID=$(gh api graphql -F owner='${{ github.repository_owner }}' \
+            -F name='Project-Ushahidi-Articles' \
+            -F first=100 \
+            -f query='
+              query($owner: String!, $name: String!, $first: Int!) {
+                repository(owner: $owner, name: $name) {
+                  projectsV2(first: $first) {
+                    nodes {
+                      id
+                      title
+                    }
+                  }
+                }
+              }' \
+            --jq '.data.repository.projectsV2.nodes[] | select(.title == "Project-Ushahidi-Articles") | .id')
+
+          COLUMN_ID=$(gh api graphql -F projectId=$PROJECT_ID \
+            -F first=100 \
+            -f query='
+              query($projectId: ID!, $first: Int!) {
+                node(id: $projectId) {
+                  ... on ProjectV2 {
+                    columns(first: $first) {
+                      nodes {
+                        id
+                        name
+                      }
+                    }
+                  }
+                }
+              }' \
+            --jq '.data.node.columns.nodes[] | select(.name == "Proposed") | .id')
+
+          ISSUE_ID=$(gh api graphql -F issueNumber=${{ github.event.issue.number }} \
+            -F owner='${{ github.repository_owner }}' \
+            -F repoName='${{ github.event.repository.name }}' \
+            -f query='
+              query($issueNumber: Int!, $owner: String!, $repoName: String!) {
+                repository(owner: $owner, name: $repoName) {
+                  issue(number: $issueNumber) {
+                    id
+                  }
+                }
+              }' \
+            --jq '.data.repository.issue.id')
+
+          gh api graphql -f projectId=$PROJECT_ID \
+            -f columnId=$COLUMN_ID \
+            -f issueId=$ISSUE_ID \
+            -f mutation='
+              mutation($projectId: ID!, $columnId: ID!, $issueId: ID!) {
+                addProjectV2ItemById(input: {
+                  projectId: $projectId,
+                  contentId: $issueId,
+                  columnId: $columnId
+                }) {
+                  item {
+                    id
+                  }
+                }
+              }'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
