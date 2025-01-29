@@ -14,6 +14,10 @@ jobs:
       issues: write
       repository-projects: write
 
+    env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
     steps:
       - name: Assign issue to creator
         run: |
@@ -86,5 +90,4 @@ jobs:
                   }
                 }
               }'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
