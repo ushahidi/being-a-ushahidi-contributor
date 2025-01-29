@@ -1,6 +1,6 @@
 ---
 name: Event Proposal
-about: Propose a new event for your chapter
+
 labels: [event]
 body:
   - type: input
