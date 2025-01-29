@@ -1,0 +1,133 @@
+---
+name: Post Event Report
+title: "Post Event Report [EVENT NAME] [DATE]"
+description: Kindly use this template to fill out a report about your just-concluded event. You don't need to include all the headings used below, as this is just a template to get you started. Feel free to delete headings that are not relevant to your event or add new ones as you deem fit.
+labels:
+  - event-report
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Attendance 🔵
+        _What was the attendance like? Was there a diverse attendance in terms of gender, race, socio-economic class, work status?_
+
+  - type: textarea
+    id: attendance
+    attributes:
+      label: Attendance Details
+      description: Provide details on event attendance and diversity.
+      placeholder: "Describe the attendance and diversity of the event."
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Event Venue 🟣
+        _Any comments on the event venue? What worked well for you? Did you experience any difficulties?_
+
+  - type: textarea
+    id: event_venue
+    attributes:
+      label: Event Venue Feedback
+      description: Share insights on the event venue.
+      placeholder: "Describe what worked well or any issues faced with the venue."
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## The Good, Bad, and Ugly 🔴
+        _Did all your plans before the event (schedule, budget, logistics, etc.) work well during the event? What didn't work well?_
+
+  - type: textarea
+    id: event_experiences
+    attributes:
+      label: Event Experiences
+      description: Share what went well, what didn’t, and lessons learned.
+      placeholder: "List out the good, bad, and ugly experiences from the event."
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## TIL (Today I Learned) ⚪️
+        _What did you learn from organizing this event?_
+
+  - type: textarea
+    id: event_learnings
+    attributes:
+      label: Lessons Learned
+      description: Share key takeaways from the event organization process.
+      placeholder: "Describe your key learnings from organizing the event."
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Feedback from Attendees 🟠
+        _Did attendees share any feedback? (Please ensure you have permission to use any attendee's comment(s))._
+
+  - type: textarea
+    id: attendee_feedback
+    attributes:
+      label: Attendee Feedback
+      description: Share any feedback received from attendees.
+      placeholder: "Describe feedback collected and how it was received."
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Social Media Highlights ⚫️
+        _Include links to any social posts about the event from any social media platform._
+
+  - type: input
+    id: social_media_links
+    attributes:
+      label: Social Media Links
+      description: Provide links to social media posts related to the event.
+      placeholder: "Example: https://twitter.com/eventpost"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Event Photos 🟢
+        _Embed images from the event here or add a link to an image repository, drive, or public folder where we can access your event images._
+
+  - type: input
+    id: event_photos
+    attributes:
+      label: Event Photos Link
+      description: Provide a link to event photos.
+      placeholder: "Example: https://drive.google.com/folder/event-photos"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Summary 🟡
+        _Generally, what's your overview of the event?_
+
+  - type: textarea
+    id: event_summary
+    attributes:
+      label: Event Summary
+      description: Share a summary of the event experience and future plans.
+      placeholder: "Describe your overall thoughts on the event and plans for improvement."
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Submission Completed
+        Thank you for completing the form! Our team will review your submission.
