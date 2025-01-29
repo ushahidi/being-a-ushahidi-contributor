@@ -18,8 +18,8 @@ jobs:
             -X POST \
             repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/assignees \
             -f assignees="${{ github.event.issue.user.login }}"
-        env:
-          GH_TOKEN: ${{ github.token }}
+          env:
+            GH_TOKEN: ${{ github.token }}
       - name: Move issue to "Proposed" column
         run: |
           PROJECT_ID=$(gh api graphql -F owner='${{ github.repository_owner }}' \
