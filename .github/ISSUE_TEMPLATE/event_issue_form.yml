@@ -1,6 +1,6 @@
 ---
 name: Event Proposal
-description: Propose a new event for your chapter
+description: Propose a new event for your community
 labels: [event]
 body:
   - type: markdown
