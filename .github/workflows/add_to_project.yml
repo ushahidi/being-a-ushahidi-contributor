@@ -13,6 +13,6 @@ jobs:
       - uses: actions/add-to-project@v1.0.2
         with:
           project-url: https://github.com/orgs/ushahidi/projects/26
-          github-token: ${{ secrets.THE_OCTO_SECRET }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           labeled: article, submission
           label-operator: AND
