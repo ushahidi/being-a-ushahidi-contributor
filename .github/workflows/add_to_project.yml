@@ -1,0 +1,18 @@
+name: 📜 Add article issues 
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  add-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@RELEASE_VERSION
+        with:
+          project-url: https://github.com/orgs/ushahidi/projects/26
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          labeled: article, submission
+          label-operator: AND
