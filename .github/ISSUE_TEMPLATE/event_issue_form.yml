@@ -1,0 +1,134 @@
+---
+name: Event Proposal
+about: Propose a new event for your chapter
+labels: [event]
+body:
+  - type: input
+    id: event_title
+    attributes:
+      label: Event Title
+      description: Provide a concise and descriptive title for your event.
+      placeholder: Example - "Tech for Good Summit 2025"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: event_description
+    attributes:
+      label: Event Description
+      description: Provide a detailed description of the event.
+      placeholder: "Describe the event's purpose, activities, and expected outcomes."
+    validations:
+      required: true
+  
+  - type: input
+    id: event_date
+    attributes:
+      label: Event Date
+      description: Specify the date of the event.
+      placeholder: DD/MM/YYYY
+    validations:
+      required: true
+  
+  - type: input
+    id: event_time
+    attributes:
+      label: Event Time
+      description: Provide the event start time and time zone.
+      placeholder: HH:MM (Timezone)
+    validations:
+      required: true
+  
+  - type: input
+    id: event_duration
+    attributes:
+      label: Event Duration
+      description: Indicate the duration of the event (e.g., 2 hours, full-day, etc.).
+      placeholder: "Example: 3 hours"
+    validations:
+      required: true
+  
+  - type: input
+    id: event_location
+    attributes:
+      label: Event Location
+      description: Specify whether the event is in-person or virtual and provide details.
+      placeholder: "Example: Online (Zoom) or Dar es Salaam, Tanzania"
+    validations:
+      required: true
+  
+  - type: input
+    id: estimated_attendees
+    attributes:
+      label: Estimated Number of Attendees
+      description: Provide an estimated number of expected participants.
+      placeholder: "Example: 50-100 attendees"
+    validations:
+      required: true
+  
+  - type: input
+    id: event_rsvp_link
+    attributes:
+      label: Event RSVP Link
+      description: Provide a link where attendees can register for the event.
+      placeholder: "Example: https://example.com/rsvp"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: chapter_benefit
+    attributes:
+      label: How does this benefit your chapter?
+      description: Explain how this event will benefit your chapter.
+      placeholder: "Provide a brief explanation of the value of this event."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: event_support
+    attributes:
+      label: What help do you need with this event?
+      description: Specify any support needed from the organization.
+      placeholder: "Describe the type of assistance you require."
+    validations:
+      required: false
+  
+  - type: checkboxes
+    id: checklist_before_submission
+    attributes:
+      label: Checklist Before Submitting This Issue
+      options:
+        - label: I have followed the issue title format.
+          required: true
+        - label: I have applied the correct labels (Country, Type of Event, Requests).
+          required: true
+        - label: I have created a budget (if requesting sponsorship).
+          required: false
+        - label: I have completed the [request form](https://example.com/request-form) (if requesting sponsorship).
+          required: false
+  
+  - type: checkboxes
+    id: checklist_before_event
+    attributes:
+      label: Checklist Before the Event
+      options:
+        - label: The event is approved.
+          required: true
+        - label: The event RSVP page has been created.
+          required: true
+        - label: I have submitted an invoice expense request to [Example Financial Platform](https://example.com/expenses/new).
+          required: false
+        - label: I have received sponsorship (if requested).
+          required: false
+  
+  - type: checkboxes
+    id: checklist_after_event
+    attributes:
+      label: Checklist After the Event
+      options:
+        - label: I have completed the [post-event report](https://example.com/post-event-template).
+          required: true
+        - label: I have submitted all related expense receipts.
+          required: false
+        - label: I have closed this issue.
+          required: false
