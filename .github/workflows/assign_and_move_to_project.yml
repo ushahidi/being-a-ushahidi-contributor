@@ -1,10 +1,8 @@
 name: 🗒️ Assign & Add to Project
-
 on:
   issues:
     types:
       - opened
-
 jobs:
   process-issue:
     # Only run if issue has both 'article' and 'submission' labels
@@ -13,8 +11,6 @@ jobs:
     permissions:
       issues: write
       repository-projects: write
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Assign issue to creator
         run: |
@@ -24,7 +20,6 @@ jobs:
             -f assignees="${{ github.event.issue.user.login }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Move issue to "Proposed" column
         run: |
           PROJECT_ID=$(gh api graphql -F owner='${{ github.repository_owner }}' \
@@ -42,7 +37,6 @@ jobs:
                 }
               }' \
             --jq '.data.repository.projectsV2.nodes[] | select(.title == "Project-Ushahidi-Articles") | .id')
-
           COLUMN_ID=$(gh api graphql -F projectId=$PROJECT_ID \
             -F first=100 \
             -f query='
@@ -59,7 +53,6 @@ jobs:
                 }
               }' \
             --jq '.data.node.columns.nodes[] | select(.name == "Proposed") | .id')
-
           ISSUE_ID=$(gh api graphql -F issueNumber=${{ github.event.issue.number }} \
             -F owner='${{ github.repository_owner }}' \
             -F repoName='${{ github.event.repository.name }}' \
@@ -72,7 +65,6 @@ jobs:
                 }
               }' \
             --jq '.data.repository.issue.id')
-
           gh api graphql -f projectId=$PROJECT_ID \
             -f columnId=$COLUMN_ID \
             -f issueId=$ISSUE_ID \
@@ -88,3 +80,5 @@ jobs:
                   }
                 }
               }'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
