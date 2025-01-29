@@ -1,25 +1,5 @@
 name: Assign Issue to Creator
 
-
-
-on:
-
-  issues:
-
-    types: [opened]
-
-
-
-jobs:
-
-  assign_to_creator:
-
-    runs-on: ubuntu-latest
-
-    steps:
-
-      - uses: name: Assign Issue to Creator
-
 on:
   issues:
     types: [opened]
@@ -37,23 +17,4 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
               assignees: [context.actor]
-            })
-
-
-        env:
-
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-        with:
-
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-          script: |
-
-            github.issues.update({
-
-              issue_number: context.payload.issue.number,
-
-              assignees: [context.actor]
-
             })
