@@ -20,7 +20,7 @@ jobs:
             -f assignees="${{ github.actor }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Move issue to "Proposed" column
         run: |
           PROJECT_ID=$(gh api graphql -F owner='${{ github.repository_owner }}' \
