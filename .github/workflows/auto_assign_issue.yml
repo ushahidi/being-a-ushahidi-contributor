@@ -1,0 +1,24 @@
+name: 🗒️ Auto Assign An Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process-issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Auto Assign Issue
+        run: |
+          gh api \
+            -X POST \
+            repos/ushahidi/being-a-ushahidi-contributor/issues/${{ github.event.issue.number }}/assignees \
+            -f assignees="${{ github.actor }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      
