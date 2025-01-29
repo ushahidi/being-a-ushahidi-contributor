@@ -1,17 +1,29 @@
 ---
 name: Event Proposal
-
+description: Propose a new event for your chapter
 labels: [event]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Welcome to the Event Proposal Form!
+        Please fill out the required details below. Ensure all required fields are completed.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Basic Event Information
+        Provide general details about your event.
+
   - type: input
     id: event_title
     attributes:
       label: Event Title
       description: Provide a concise and descriptive title for your event.
-      placeholder: Example - "Tech for Good Summit 2025"
+      placeholder: "Example - Tech for Good Summit 2025"
     validations:
       required: true
-  
+
   - type: textarea
     id: event_description
     attributes:
@@ -20,25 +32,25 @@ body:
       placeholder: "Describe the event's purpose, activities, and expected outcomes."
     validations:
       required: true
-  
+
   - type: input
     id: event_date
     attributes:
       label: Event Date
       description: Specify the date of the event.
-      placeholder: DD/MM/YYYY
+      placeholder: "DD/MM/YYYY"
     validations:
       required: true
-  
+
   - type: input
     id: event_time
     attributes:
       label: Event Time
       description: Provide the event start time and time zone.
-      placeholder: HH:MM (Timezone)
+      placeholder: "HH:MM (Timezone)"
     validations:
       required: true
-  
+
   - type: input
     id: event_duration
     attributes:
@@ -47,7 +59,7 @@ body:
       placeholder: "Example: 3 hours"
     validations:
       required: true
-  
+
   - type: input
     id: event_location
     attributes:
@@ -56,7 +68,7 @@ body:
       placeholder: "Example: Online (Zoom) or Dar es Salaam, Tanzania"
     validations:
       required: true
-  
+
   - type: input
     id: estimated_attendees
     attributes:
@@ -65,7 +77,7 @@ body:
       placeholder: "Example: 50-100 attendees"
     validations:
       required: true
-  
+
   - type: input
     id: event_rsvp_link
     attributes:
@@ -74,7 +86,13 @@ body:
       placeholder: "Example: https://example.com/rsvp"
     validations:
       required: true
-  
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Chapter Benefit
+        Explain how this event will benefit your chapter.
+
   - type: textarea
     id: chapter_benefit
     attributes:
@@ -83,16 +101,28 @@ body:
       placeholder: "Provide a brief explanation of the value of this event."
     validations:
       required: true
-  
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Support Needed
+        Specify any support needed from the organization.
+
   - type: textarea
     id: event_support
     attributes:
       label: What help do you need with this event?
-      description: Specify any support needed from the organization.
+      description: Describe the type of assistance you require.
       placeholder: "Describe the type of assistance you require."
     validations:
       required: false
-  
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Checklist
+        Ensure that all necessary steps are completed before submission.
+
   - type: checkboxes
     id: checklist_before_submission
     attributes:
@@ -106,7 +136,7 @@ body:
           required: false
         - label: I have completed the [request form](https://example.com/request-form) (if requesting sponsorship).
           required: false
-  
+
   - type: checkboxes
     id: checklist_before_event
     attributes:
@@ -120,7 +150,7 @@ body:
           required: false
         - label: I have received sponsorship (if requested).
           required: false
-  
+
   - type: checkboxes
     id: checklist_after_event
     attributes:
@@ -132,3 +162,9 @@ body:
           required: false
         - label: I have closed this issue.
           required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Submission Completed
+        Thank you for completing the form! Our team will review your submission.
