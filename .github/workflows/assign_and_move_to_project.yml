@@ -1,25 +1,23 @@
 name: 🗒️ Assign & Add to Project
+
 on:
   issues:
-    types:
-      - opened
+    types: [opened]
 
 jobs:
   process-issue:
-    # Only run if issue has both 'article' and 'submission' labels
-    if: contains(github.event.issue.labels.*.name, 'article') && contains(github.event.issue.labels.*.name, 'submission')
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      repository-projects: write
-    
+
     steps:
-      - name: Assign issue to creator
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Assign issue
         run: |
           gh api \
             -X POST \
-            repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/assignees \
-            -f assignees="${{ github.event.issue.user.login }}" 
+            repos/ushahidi/being-a-ushahidi-contributor/issues/${{ github.event.issue.number }}/assignees \
+            -f assignees="${{ github.actor }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
