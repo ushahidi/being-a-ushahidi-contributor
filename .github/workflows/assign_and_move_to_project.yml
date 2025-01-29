@@ -15,14 +15,14 @@ jobs:
       repository-projects: write
 
     env:
-        GH_TOKEN: ${{ github.THE_OCTO_SECRET }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
     steps:
       - name: Assign issue to creator
         run: |
           gh api \
-            -H "Authorization: token ${{ github.token }}" \
+            -H "Authorization: token ${{ github.GITHUB_TOKEN }}" \
             -X POST \
             repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/assignees \
             -f assignees="${{ github.event.issue.user.login }}"
