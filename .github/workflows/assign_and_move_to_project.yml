@@ -22,7 +22,7 @@ jobs:
       - name: Assign issue to creator
         run: |
           gh api \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Authorization: token ${{ github.token }}" \
             -X POST \
             repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/assignees \
             -f assignees="${{ github.event.issue.user.login }}"
