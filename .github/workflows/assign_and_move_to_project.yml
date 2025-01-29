@@ -24,7 +24,7 @@ jobs:
       - name: Move issue to "Proposed" column
         run: |
           PROJECT_ID=$(gh api graphql -F owner='${{ github.repository_owner }}' \
-            -F name='Project-Ushahidi-Articles' \
+            -F name='being-a-ushahidi-contributor' \
             -F first=100 \
             -f query='
               query($owner: String!, $name: String!, $first: Int!) {
