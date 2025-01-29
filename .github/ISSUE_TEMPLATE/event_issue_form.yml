@@ -143,7 +143,7 @@ body:
       label: Checklist Before the Event
       options:
         - label: The event is approved.
-          required: true
+          required: false
         - label: The event RSVP page has been created.
           required: true
         - label: I have submitted an invoice expense request to [Example Financial Platform](https://example.com/expenses/new).
@@ -157,7 +157,7 @@ body:
       label: Checklist After the Event
       options:
         - label: I have completed the [post-event report](https://example.com/post-event-template).
-          required: true
+          required: false
         - label: I have submitted all related expense receipts.
           required: false
         - label: I have closed this issue.
