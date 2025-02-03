@@ -4,7 +4,7 @@ title: "[Article Submission] <Title>"
 labels:
   - article
   - submission
-projects: ["Articles"]
+projects: ["ushahidi/32"]
 body:
   - type: markdown
     attributes:
