@@ -2,7 +2,7 @@
 name: Event Proposal
 description: Propose a new event for your community
 labels: [event]
-projects : ["ushahidi/32"]
+projects : ["ushahidi/31"]
 body:
   - type: markdown
     attributes:
